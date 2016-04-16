@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <script src="scripts/VSS.SDK.min.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // Initialize framework 
+        VSS.init({
+            explicitNotifyLoaded: true,
+            usePlatformScripts: true,
+            configureModuleLoader: true
+        });
+          
+        // Load main entry point for extension
+        VSS.require(["scripts/autosave"], function (Autosave) {
+            var auto = new Autosave.Autosave();
+            auto.initialize().then(function (value) {
+                auto.register();
+                // Loading succeeded
+                VSS.notifyLoadSucceeded();
+            });
+        });
+    </script>
+</body>
+
+</html>

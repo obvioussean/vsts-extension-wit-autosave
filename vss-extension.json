@@ -1,0 +1,86 @@
+{
+    "manifestVersion": 1,
+    "id": "vsts-extension-wit-autosave",
+    "version": "0.1.0",
+    "name": "vsts-extension-wit-autosave",
+    "scopes": [
+        "vso.work",
+        "vso.work_write"
+    ],
+    "description": "Autosave the work item on field change.",
+    "publisher": "sferg",
+    "public": false,
+    "icons": {
+        "default": "img/logo.png"
+    },
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "tags": [
+        "Work Item"
+    ],
+    "content": {
+        "details": {
+            "path": "README.md"
+        }
+    },
+    "links": {
+        "home": {
+            "uri": "https://github.com/sirfergy/vsts-extension-wit-autosave"
+        },
+        "repository": {
+            "uri": "https://github.com/sirfergy/vsts-extension-wit-autosave"
+        },
+        "issues": {
+            "uri": "https://github.com/sirfergy/vsts-extension-wit-autosave/issues"
+        }
+    },
+    "branding": {
+        "color": "rgb(220, 235, 252)",
+        "theme": "light"
+    },
+    "files": [
+        {
+            "path": "img",
+            "addressable": true
+        },
+        {
+            "path": "scripts",
+            "addressable": true
+        },
+        {
+            "path": "index.html",
+            "addressable": true
+        }
+    ],
+    "categories": [
+        "Plan and track"
+    ],
+    "contributions": [
+        {
+            "id": "vsts-extension-wit-autosave-toolbar",
+            "type": "ms.vss-web.action-provider",
+            "description": "",
+            "targets": [
+                "ms.vss-work-web.work-item-toolbar-menu"
+            ],
+            "properties": {
+                "group": "contributed",
+                "uri": "index.html"
+            }
+        },
+        {
+            "id": "vsts-extension-wit-autosave-notifications",
+            "type": "ms.vss-work-web.work-item-notifications",
+            "description": "",
+            "targets": [
+                "ms.vss-work-web.work-item-form"
+            ],
+            "properties": {
+                "uri": "index.html"
+            }
+        }
+    ]
+}
