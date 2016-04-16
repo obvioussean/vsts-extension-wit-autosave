@@ -1,5 +1,4 @@
 # vsts-extension-wit-autosave
-<<<<<<< HEAD
 Autosave for the Work Item Form automatically saves the work item two seconds after the last user input.
 
 TODO:
@@ -10,6 +9,3 @@ TODO:
 Known Issues:
 * Assigned to autosave is too eager
 * HTML fields move cursor to beginning after autosave
-=======
-Autosave VSTS Extension for the Work Item Form
->>>>>>> 7b41d441398db522d25c403b4e124de6739cbde2
