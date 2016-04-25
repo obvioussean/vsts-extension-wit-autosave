@@ -98,25 +98,25 @@ export class Autosave {
     }
 
     public register(): void {
-        VSS.register("vsts-extension-wit-autosave-notifications", <TFS_WorkItemTracking_ExtensionContracts.IWorkItemNotificationListener>{
+        VSS.register("vsts-extension-wit-autosave-notifications", {
             onFieldChanged: (args: TFS_WorkItemTracking_ExtensionContracts.IWorkItemFieldChangedArgs) => {
                 this._throttledFieldChangeDelegate(args);
             }
-        });
+        } as TFS_WorkItemTracking_ExtensionContracts.IWorkItemNotificationListener);
 
-        VSS.register("vsts-extension-wit-autosave-toolbar", <IContributedMenuSource>{
+        VSS.register("vsts-extension-wit-autosave-toolbar", {
             getMenuItems: (context) => {
-                return [<IContributedMenuItem>{
+                return [{
                     title: "Configure Work Item Autosave",
                     action: (actionContext) => {
                         this._showDialog(actionContext.workItemId);
                     }
-                }];
+                } as IContributedMenuItem];
             },
             execute: (actionContext) => {
                 //no-op since action is implemented.
             }
-        });
+        } as IContributedMenuSource);
     }
 
     private _initializeComplete(document: AutosaveSettings): void {
@@ -134,7 +134,7 @@ export class Autosave {
         var witClient = TFS_WorkItemTracking_Client.getClient();
         this._workItemFormService.getFieldValues(["System.TeamProject", "System.WorkItemType"])
             .then((values: IDictionaryStringTo<Object>) => {
-                coreClient.getProject(<string>values["System.TeamProject"]).then((project: TFS_Core_Contracts.TeamProject) => {
+                coreClient.getProject(values["System.TeamProject"] as string).then((project: TFS_Core_Contracts.TeamProject) => {
                     var projectId = project.id;
                     witClient.getWorkItemTypes(projectId).then((types: TFS_WorkItemTracking_Contracts.WorkItemType[]) => {
 
@@ -159,12 +159,12 @@ export class Autosave {
                     var noExcludedFields: boolean = true;
 
                     // TODO: cache project name -> guid mapping
-                    var projectName: string = <string>values["System.TeamProject"];
+                    var projectName: string = values["System.TeamProject"] as string;
                     var projectSettings = this._autosaveSettings.projectSettings[projectName];
 
                     // If we don't have any settings, everything is on
                     if (!$.isEmptyObject(projectSettings)) {
-                        var workItemTypeName: string = <string>values["System.WorkItemType"];
+                        var workItemTypeName: string = values["System.WorkItemType"] as string;
                         var typeSettings = projectSettings.typeSettings[workItemTypeName];
 
                         // If we don't have anything for this type, everything is on.
