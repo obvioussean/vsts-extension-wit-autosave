@@ -19,7 +19,7 @@
         // Load main entry point for extension
         VSS.require(["scripts/autosave"], function (Autosave) {
             var auto = new Autosave.Autosave();
-            auto.initialize().then(function (value) {
+            auto.initialize().then(function () {
                 auto.register();
                 // Loading succeeded
                 VSS.notifyLoadSucceeded();

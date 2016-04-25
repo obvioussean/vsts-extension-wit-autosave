@@ -1,11 +1,11 @@
 {
   "devDependencies": {
-    "grunt": "~0.4",
-    "grunt-cli": "~0.1",
-    "grunt-contrib-clean": "~1.0",
-    "grunt-contrib-copy": "~0.8",
-    "grunt-exec": "~0.4",
-    "tfx-cli": "~0.3",
+    "grunt": "^0.4",
+    "grunt-cli": "~1.2.0",
+    "grunt-contrib-clean": "~1.0.0",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-exec": "~0.4.6",
+    "tfx-cli": "~0.3.19",
     "tsd": "~0.6.5",
     "vss-web-extension-sdk": "~1.98.0"
   },

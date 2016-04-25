@@ -4,6 +4,7 @@
         "**/*.js": {
             "when": "$(basename).ts"
         },
-        "**/*.vsix": true
+        "**/*.vsix": true,
+        "*.gitignore": true
     }
 }
