@@ -6,5 +6,6 @@
         },
         "**/*.vsix": true,
         "*.gitignore": true
-    }
+    },
+    "typescript.tsdk": "C:\\Users\\sean\\AppData\\Roaming\\npm\\node_modules\\typescript\\lib" 
 }

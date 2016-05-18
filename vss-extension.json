@@ -51,7 +51,15 @@
             "addressable": true
         },
         {
-            "path": "index.html",
+            "path": "notifications.html",
+            "addressable": true
+        },
+        {
+            "path": "toolbar.html",
+            "addressable": true
+        },
+        {
+            "path": "dialog.html",
             "addressable": true
         }
     ],
@@ -60,7 +68,7 @@
     ],
     "contributions": [
         {
-            "id": "vsts-extension-wit-autosave-toolbar",
+            "id": "toolbar",
             "type": "ms.vss-web.action-provider",
             "description": "",
             "targets": [
@@ -68,18 +76,27 @@
             ],
             "properties": {
                 "group": "contributed",
-                "uri": "index.html"
+                "uri": "toolbar.html"
             }
         },
         {
-            "id": "vsts-extension-wit-autosave-notifications",
+            "id": "notifications",
             "type": "ms.vss-work-web.work-item-notifications",
             "description": "",
             "targets": [
                 "ms.vss-work-web.work-item-form"
             ],
             "properties": {
-                "uri": "index.html"
+                "uri": "notifications.html"
+            }
+        },
+        {
+            "id": "dialog",
+            "type": "ms.vss-web.control",
+            "description": "The content to be displayed in the dialog",
+            "targets": [],
+            "properties": {
+                "uri": "dialog.html"
             }
         }
     ]

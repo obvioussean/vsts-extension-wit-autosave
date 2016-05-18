@@ -1,5 +1,4 @@
-﻿/// <reference path='../typings/tsd.d.ts' />
-
+/// <reference path='../typings/tsd.d.ts' />
 import TFS_Core_Client = require("TFS/Core/RestClient");
 import TFS_Core_Contracts = require("TFS/Core/Contracts");
 import TFS_WorkItemTracking_Client = require("TFS/WorkItemTracking/RestClient");
@@ -8,23 +7,9 @@ import TFS_WorkItemTracking_ExtensionContracts = require("TFS/WorkItemTracking/E
 import TFS_WorkItemTracking_Services = require("TFS/WorkItemTracking/Services");
 import VSS_Utils_Core = require("VSS/Utils/Core");
 import Q = require("q");
+import {AutosaveSettings} from "scripts/autosaveSettings";
 
-class WorkItemTypeSettings {
-    public enabled: boolean = true;
-    public excludedFields: number[] = [];
-}
-
-class ProjectSettings {
-    public typeSettings: IDictionaryStringTo<WorkItemTypeSettings> = {}
-}
-
-class AutosaveSettings {
-    public id: string;
-    public projectSettings: IDictionaryStringTo<ProjectSettings> = {}
-    public delay: number = 2000;
-}
-
-export class Autosave {
+export class Notifications {
     private _documentCollection: string = "autosave";
     private _documentOptions: IDocumentOptions = {
         scopeType: "User"
@@ -66,57 +51,15 @@ export class Autosave {
                 deferred.resolve(null);
             });
 
-
-
-        /*document.projectSettings["VSO"].
-        // Document does not exist, create it.
-        var document: AutosaveSettings = {
-            id: this._documentId,
-            projectSettings: {
-                "VSOnline": {
-                    typeSettings: {
-                        "Bug": {
-                            enabled: true,
-                            excludedFields: []
-                        }
-                    }
-                }
-            },
-            delay: this._delayMs
-        };*/
-        /*
-        dataService.setDocument(
-            this._documentCollection,
-            document,
-            this._documentOptions).then((document: AutosaveSettings) => {
-                this._autosaveSettings = document;
-                deferred.resolve(null);
-            }, (reason: any) => {
-                debugger;
-            });*/
         return deferred.promise;
     }
 
     public register(): void {
-        VSS.register("vsts-extension-wit-autosave-notifications", {
+        VSS.register("notifications", {
             onFieldChanged: (args: TFS_WorkItemTracking_ExtensionContracts.IWorkItemFieldChangedArgs) => {
                 this._throttledFieldChangeDelegate(args);
             }
         } as TFS_WorkItemTracking_ExtensionContracts.IWorkItemNotificationListener);
-
-        VSS.register("vsts-extension-wit-autosave-toolbar", {
-            getMenuItems: (context) => {
-                return [{
-                    title: "Configure Work Item Autosave",
-                    action: (actionContext) => {
-                        this._showDialog(actionContext.workItemId);
-                    }
-                } as IContributedMenuItem];
-            },
-            execute: (actionContext) => {
-                //no-op since action is implemented.
-            }
-        } as IContributedMenuSource);
     }
 
     private _initializeComplete(document: AutosaveSettings): void {
@@ -126,24 +69,6 @@ export class Autosave {
             this._autosaveSettings.delay,
             (args: TFS_WorkItemTracking_ExtensionContracts.IWorkItemFieldChangedArgs) => {
                 this._onFieldChanged(args);
-            });
-    }
-
-    private _showDialog(workItemId: number) {
-        var coreClient = TFS_Core_Client.getClient();
-        var witClient = TFS_WorkItemTracking_Client.getClient();
-        this._workItemFormService.getFieldValues(["System.TeamProject", "System.WorkItemType"])
-            .then((values: IDictionaryStringTo<Object>) => {
-                coreClient.getProject(values["System.TeamProject"] as string).then((project: TFS_Core_Contracts.TeamProject) => {
-                    var projectId = project.id;
-                    witClient.getWorkItemTypes(projectId).then((types: TFS_WorkItemTracking_Contracts.WorkItemType[]) => {
-
-
-                    });
-
-                }, (reason: any) => {
-
-                })
             });
     }
 

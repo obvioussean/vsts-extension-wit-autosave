@@ -2,11 +2,10 @@
     grunt.initConfig({
         ts: {
             build: {
-                src: ["scripts/**/*.ts"],
                 tsconfig: true
             },
             options: {
-                fast: 'never'
+                fast: 'never'                
             }
         },
         exec: {
@@ -16,7 +15,7 @@
                 stderr: true
             },
             publish: {
-                command: "tfx extension publish --manifest-globs vss-extension.json",
+                command: "tfx extension publish --service-url https://marketplace.visualstudio.com --manifest-globs vss-extension.json",
                 stdout: true,
                 stderr: true
             }
@@ -26,7 +25,7 @@
                 files: [{
                     expand: true, 
                     flatten: true, 
-                    src: ["node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js"], 
+                    src: ["node_modules/vss-web-extension-sdk/lib/VSS.SDK.js"], 
                     dest: "scripts",
                     filter: "isFile" 
                 }]
