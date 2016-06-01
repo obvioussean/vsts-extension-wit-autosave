@@ -1,0 +1,11 @@
+{
+  "globalDependencies": {
+    "jquery": "registry:dt/jquery#1.10.0+20160417213236",
+    "knockout": "registry:dt/knockout#0.0.0+20160428162840",
+    "q": "registry:dt/q#0.0.0+20160417152954",
+    "react": "registry:dt/react#0.14.0+20160526134601",
+    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
+    "tfs": "github:sferg-msft/vss-web-extension-sdk/typings/tfs.d.ts",
+    "vss": "github:sferg-msft/vss-web-extension-sdk/typings/vss.d.ts"
+  }
+}

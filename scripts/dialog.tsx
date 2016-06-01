@@ -1,4 +1,3 @@
-/// <reference path='../typings/tsd.d.ts' />
 import TFS_Core_Client = require("TFS/Core/RestClient");
 import TFS_Core_Contracts = require("TFS/Core/Contracts");
 import TFS_WorkItemTracking_Client = require("TFS/WorkItemTracking/RestClient");
@@ -27,9 +26,12 @@ class ReactDialog extends React.Component<DialogProps, any> {
 export class Dialog {
     public render() {
         var AutosaveView = React.createClass({
-            render: function () {
+            componentDidMount: function () {
+                window.alert("Mount!");  
+            },
+            render: function() {
                 var loading = this.props != null;
-                
+
                 return <div>
                     <h2>HomeView {loading}</h2>
                     <ReactDialog name="world" />

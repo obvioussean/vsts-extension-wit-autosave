@@ -1,4 +1,3 @@
-/// <reference path='../typings/tsd.d.ts' />
 import TFS_Core_Client = require("TFS/Core/RestClient");
 import TFS_Core_Contracts = require("TFS/Core/Contracts");
 import TFS_WorkItemTracking_Client = require("TFS/WorkItemTracking/RestClient");

@@ -1,11 +1,21 @@
 ﻿module.exports = function (grunt) {
     grunt.initConfig({
+        bower: {
+            install: {
+                options: {
+                    targetDir: 'scripts'
+                }
+            }
+        },
+        typings: {
+            install: {}
+        },
         ts: {
             build: {
                 tsconfig: true
             },
             options: {
-                fast: 'never'                
+                fast: "never"
             }
         },
         exec: {
@@ -20,29 +30,21 @@
                 stderr: true
             }
         },
-        copy: {
-            scripts: {
-                files: [{
-                    expand: true, 
-                    flatten: true, 
-                    src: ["node_modules/vss-web-extension-sdk/lib/VSS.SDK.js"], 
-                    dest: "scripts",
-                    filter: "isFile" 
-                }]
-            }
-        },
-        
+
         clean: ["scripts/**/*.js", "*.vsix"]
     });
-    
-    grunt.loadNpmTasks("grunt-ts");
-    grunt.loadNpmTasks("grunt-exec");
-    grunt.loadNpmTasks("grunt-contrib-copy");
-    grunt.loadNpmTasks('grunt-contrib-clean');
 
-    grunt.registerTask("build", ["ts:build", "copy:scripts"]);
+    grunt.loadNpmTasks("grunt-bower-task");
+    grunt.loadNpmTasks("grunt-contrib-clean");
+    grunt.loadNpmTasks("grunt-contrib-copy");
+    grunt.loadNpmTasks("grunt-exec");
+    grunt.loadNpmTasks("grunt-ts");
+    grunt.loadNpmTasks("grunt-typings");
+
+    grunt.registerTask("install", ["bower:install", "typings:install"]);
+    grunt.registerTask("build", ["ts:build"]);
     grunt.registerTask("package", ["build", "exec:package"]);
-    grunt.registerTask("publish", ["default", "exec:publish"]);        
-    
+    grunt.registerTask("publish", ["default", "exec:publish"]);
+
     grunt.registerTask("default", ["package"]);
 };

@@ -1,6 +1,4 @@
-﻿/// <reference path='../typings/tsd.d.ts' />
-
-export class Toolbar {
+﻿export class Toolbar {
     public register(): void {
         VSS.register("toolbar", {
             getMenuItems: (context) => {
