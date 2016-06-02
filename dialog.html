@@ -15,11 +15,8 @@
         });
           
         // Load main entry point for extension
-        VSS.require(["scripts/dialog"], function (Dialog) {
+        VSS.require(["scripts/autosaveDialog"], function () {
             VSS.notifyLoadSucceeded();
-            
-            var dialog = new Dialog.Dialog();
-            dialog.render();
         });
     </script>
     

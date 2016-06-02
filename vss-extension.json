@@ -8,7 +8,7 @@
         "vso.work_write"
     ],
     "description": "Autosave the work item on field change.",
-    "publisher": "sferg",
+    "publisher": "seanferguson",
     "public": false,
     "icons": {
         "default": "img/logo.png"
