@@ -15,10 +15,10 @@
         });
           
         // Load main entry point for extension
-        VSS.require(["scripts/notifications"], function (Notifications) {
-            var notifications = new Notifications.Notifications();
-            notifications.initialize().then(function () {
-                notifications.register();
+        VSS.require(["scripts/autosave"], function (Autosave) {
+            var autosave = new Autosave.Autosave();
+            autosave.initialize().then(function () {
+                autosave.register();
                 // Loading succeeded
                 VSS.notifyLoadSucceeded();
             });

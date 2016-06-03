@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "vsts-extension-wit-autosave",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "name": "vsts-extension-wit-autosave",
     "scopes": [
         "vso.work",
@@ -28,13 +28,13 @@
     },
     "links": {
         "home": {
-            "uri": "https://github.com/sirfergy/vsts-extension-wit-autosave"
+            "uri": "https://github.com/sferg-msft/vsts-extension-wit-autosave"
         },
         "repository": {
-            "uri": "https://github.com/sirfergy/vsts-extension-wit-autosave"
+            "uri": "https://github.com/sferg-msft/vsts-extension-wit-autosave"
         },
         "issues": {
-            "uri": "https://github.com/sirfergy/vsts-extension-wit-autosave/issues"
+            "uri": "https://github.com/sferg-msft/vsts-extension-wit-autosave/issues"
         }
     },
     "branding": {
@@ -51,15 +51,7 @@
             "addressable": true
         },
         {
-            "path": "notifications.html",
-            "addressable": true
-        },
-        {
-            "path": "toolbar.html",
-            "addressable": true
-        },
-        {
-            "path": "dialog.html",
+            "path": "autosave.html",
             "addressable": true
         }
     ],
@@ -68,35 +60,14 @@
     ],
     "contributions": [
         {
-            "id": "toolbar",
-            "type": "ms.vss-web.action-provider",
-            "description": "",
-            "targets": [
-                "ms.vss-work-web.work-item-toolbar-menu"
-            ],
-            "properties": {
-                "group": "contributed",
-                "uri": "toolbar.html"
-            }
-        },
-        {
-            "id": "notifications",
+            "id": "autosave",
             "type": "ms.vss-work-web.work-item-notifications",
             "description": "",
             "targets": [
                 "ms.vss-work-web.work-item-form"
             ],
             "properties": {
-                "uri": "notifications.html"
-            }
-        },
-        {
-            "id": "dialog",
-            "type": "ms.vss-web.control",
-            "description": "The content to be displayed in the dialog",
-            "targets": [],
-            "properties": {
-                "uri": "dialog.html"
+                "uri": "autosave.html"
             }
         }
     ]
