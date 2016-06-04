@@ -8,4 +8,4 @@ For bugs please use the [issue tracker](https://github.com/sferg-msft/vsts-exten
 For feedback/questions contact me on Twitter: [@sferg_msft](https://twitter.com/sferg_msft).
 
 ### Known Issues:
-* HTML fields move cursor to beginning after autosave
+* After autosave, the cursor moves to the start of the current line for HTML fields
