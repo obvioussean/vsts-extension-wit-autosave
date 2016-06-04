@@ -2,16 +2,16 @@
     "manifestVersion": 1,
     "id": "vsts-extension-wit-autosave",
     "version": "1.0.0",
-    "name": "vsts-extension-wit-autosave",
+    "name": "Work Item Autosave",
     "scopes": [
         "vso.work",
         "vso.work_write"
     ],
-    "description": "Autosave the work item on field change.",
+    "description": "Autosave the work item on field changes",
     "publisher": "seanferguson",
     "public": false,
     "icons": {
-        "default": "img/logo.png"
+        "default": "img/autosave.png"
     },
     "targets": [
         {
@@ -27,19 +27,16 @@
         }
     },
     "links": {
-        "home": {
+        "learn": {
             "uri": "https://github.com/sferg-msft/vsts-extension-wit-autosave"
         },
-        "repository": {
-            "uri": "https://github.com/sferg-msft/vsts-extension-wit-autosave"
-        },
-        "issues": {
+        "support": {
             "uri": "https://github.com/sferg-msft/vsts-extension-wit-autosave/issues"
         }
     },
     "branding": {
-        "color": "rgb(220, 235, 252)",
-        "theme": "light"
+        "color": "#5C2D91",
+        "theme": "dark"
     },
     "files": [
         {
