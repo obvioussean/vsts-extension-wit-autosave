@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "vsts-extension-wit-autosave",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "name": "Work Item Autosave",
     "scopes": [
         "vso.work",
@@ -9,7 +9,7 @@
     ],
     "description": "Autosave the work item on field changes",
     "publisher": "seanferguson",
-    "public": false,
+    "public": true,
     "icons": {
         "default": "img/autosave.png"
     },

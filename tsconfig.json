@@ -2,10 +2,16 @@
     "compilerOptions": {
         "module": "amd",
         "sourceMap": false,
-        "target": "es5"
+        "target": "es5",
+        "rootDir": "./scripts",
+        "outDir": "./dist"
     },
-    "exclude": [
-        "node_modules",
-        "bower_components"
+    "filesGlob": [
+        "./scripts/**/*.ts",
+        "./typings/index.d.ts"
+    ],
+    "files": [
+        "scripts/autosave.ts",
+        "typings/index.d.ts"
     ]
 }

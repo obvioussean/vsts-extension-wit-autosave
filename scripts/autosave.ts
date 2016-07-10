@@ -27,7 +27,7 @@ export class Autosave {
     }
 
     public register(): void {
-        VSS.register("autosave", {
+        VSS.register(VSS.getContribution().id, {
             onFieldChanged: (args: IWorkItemFieldChangedArgs) => {
                 this._throttledFieldChangeDelegate(args);
             }
