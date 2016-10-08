@@ -1,8 +1,9 @@
 {
   "globalDependencies": {
-    "jquery": "registry:dt/jquery#1.10.0+20160417213236",
-    "knockout": "registry:dt/knockout#0.0.0+20160428162840",
-    "q": "registry:dt/q#0.0.0+20160417152954",
+    "jquery": "registry:dt/jquery#1.10.0+20160929162922",
+    "knockout": "registry:dt/knockout#0.0.0+20160914182733",
+    "q": "registry:dt/q#0.0.0+20161004185634",
+    "require": "registry:dt/require#2.1.20+20160919185614",
     "tfs": "npm:vss-web-extension-sdk/typings/tfs.d.ts",
     "vss": "npm:vss-web-extension-sdk/typings/vss.d.ts"
   }
