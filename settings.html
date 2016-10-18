@@ -2,12 +2,17 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<script src="scripts/VSS.SDK.min.js"></script>
+    <meta charset="utf-8" />
+    <script src="scripts/VSS.SDK.min.js"></script>
+    <style>
+        #content {
+            padding: 10px;
+        }
+    </style>
 </head>
 
 <body>
-	<script type="text/javascript">
+    <script type="text/javascript">
         // Initialize framework 
         VSS.init({
             explicitNotifyLoaded: true,
@@ -16,16 +21,16 @@
         });
           
         // Load main entry point for extension
-        VSS.require(["scripts/autosave"], function (Autosave) {
-            var autosave = new Autosave.Autosave();
-            autosave.initialize().then(function () {
-                autosave.register();
-
+        VSS.require(["scripts/settingsRenderer"], function (renderer) {
+            var renderer = new renderer.SettingsRenderer();
+            renderer.initialize().then(function () {
                 // Loading succeeded
                 VSS.notifyLoadSucceeded();
             });
         });
     </script>
+
+    <div id="content" />
 </body>
 
 </html>

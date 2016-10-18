@@ -1,6 +1,10 @@
 # Work Item Autosave
 
-After any change to a work item, it will automatically be saved.  To prevent too many revisions on a work item, there is a delay of 2.5 seconds after the work item is last changed before the save is attempted.
+After any change to a work item, it will automatically be saved.  To prevent unnecessary revisions on a work item, there is a configurable delay of 2.5 seconds after the work item is last changed before the save is attempted.
+
+To configure Work Item Autosave, please navigate to the collection administration page and select "Work Item Autosave."
+
+If you need to temporarily disable autosave, there is now work item form menu which will enable/disable autosave for the work item being edited.
 
 ### Feedback
 For bugs please use the [issue tracker](https://github.com/sferg-msft/vsts-extension-wit-autosave/issues) on the GitHub repo.
@@ -8,4 +12,4 @@ For bugs please use the [issue tracker](https://github.com/sferg-msft/vsts-exten
 For feedback/questions contact me on Twitter: [@sferg_msft](https://twitter.com/sferg_msft).
 
 ### Known Issues:
-* After autosave, the cursor moves to the start of the current line for HTML fields
+* After autosave, the cursor moves to the start of the current line for rich text fields

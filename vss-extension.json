@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "vsts-extension-wit-autosave",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "name": "Work Item Autosave",
     "scopes": [
         "vso.work",
@@ -50,6 +50,10 @@
         {
             "path": "autosave.html",
             "addressable": true
+        },
+        {
+            "path": "settings.html",
+            "addressable": true
         }
     ],
     "categories": [
@@ -64,6 +68,33 @@
                 "ms.vss-work-web.work-item-form"
             ],
             "properties": {
+                "uri": "autosave.html"
+            }
+        },
+        {
+            "id": "autosave-settings-hub",
+            "type": "ms.vss-web.hub",
+            "description": "Settings for the Work Item Autosave extension",
+            "targets": [
+                "ms.vss-web.collection-admin-hub-group"
+            ],
+            "properties": {
+                "name": "Work Item Autosave",
+                "uri": "settings.html"
+            }
+        },
+        {
+            "id": "autosave-toolbar-button",
+            "type": "ms.vss-web.action",
+            "description": "Toolbar item to enable/disable autosave",
+            "targets": [
+                "ms.vss-work-web.work-item-toolbar-menu"
+            ],
+            "properties": {
+                "text": "Autosave",
+                "title": "Enables or disables autosave for this work item",
+                "toolbarText": "Disable Autosave",
+                "icon": "images/show-properties.png",
                 "uri": "autosave.html"
             }
         }
