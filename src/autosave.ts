@@ -1,11 +1,10 @@
-import * as VSS_Utils_Core from "VSS/Utils/Core";
-import * as VSS_Utils_Array from "VSS/Utils/Array";
-import * as Q from "q";
-import { IWorkItemFieldChangedArgs, IWorkItemNotificationListener } from "TFS/WorkItemTracking/ExtensionContracts"
-import { WorkItemField, FieldType } from "TFS/WorkItemTracking/Contracts";
+import { FieldType, WorkItemField } from "TFS/WorkItemTracking/Contracts";
+import { IWorkItemFieldChangedArgs, IWorkItemNotificationListener } from "TFS/WorkItemTracking/ExtensionContracts";
 import { IWorkItemFormService, WorkItemFormService } from "TFS/WorkItemTracking/Services";
-import { SettingsManager } from "scripts/settingsManager";
-import { AutosaveDocument } from "scripts/autosaveDocument";
+import * as VSS_Utils_Array from "VSS/Utils/Array";
+import * as VSS_Utils_Core from "VSS/Utils/Core";
+import { AutosaveDocument } from "./autosaveDocument";
+import { SettingsManager } from "./settingsManager";
 
 export class Autosave {
     private _settings: AutosaveDocument;
@@ -17,31 +16,26 @@ export class Autosave {
     private _context: any;
     private _workItemFieldChangedArgs: IWorkItemFieldChangedArgs;
 
-    public initialize(): IPromise<any> {
-        let settings = new SettingsManager();
-        return settings.getSettings().then((settings: AutosaveDocument) => {
-            this._settings = settings;
+    public async initialize(): Promise<any> {
+        const settingsManager = new SettingsManager();
+        this._settings = await settingsManager.getSettings();
 
-            this._throttledFieldChangeDelegate = VSS_Utils_Core.throttledDelegate(
-                this,
-                this._settings.delay,
-                this._onFieldChanged);
+        this._throttledFieldChangeDelegate = VSS_Utils_Core.throttledDelegate(
+            this,
+            this._settings.delay,
+            this._onFieldChanged);
 
-            return WorkItemFormService.getService();
-        }).then((workItemFormService: IWorkItemFormService) => {
-            this._workItemFormService = workItemFormService;
+        this._workItemFormService = await WorkItemFormService.getService();
 
-            return this._workItemFormService.getFields();
-        }).then((fields) => {
-            this._fieldDictionary = VSS_Utils_Array.toDictionary(
-                fields,
-                (item, index) => {
-                    return item.referenceName;
-                },
-                (item, index) => {
-                    return item;
-                });
-        });
+        const fields = await this._workItemFormService.getFields();
+        this._fieldDictionary = VSS_Utils_Array.toDictionary(
+            fields,
+            (item, index) => {
+                return item.referenceName;
+            },
+            (item, index) => {
+                return item;
+            });
     }
 
     public register(): void {
@@ -90,18 +84,28 @@ export class Autosave {
             return;
         }
 
-        let htmlFieldChanged: boolean = false;
+        let ignoreChange: boolean = false;
         if (this._settings.richTextDisabled) {
             for (let fieldReferenceName in this._workItemFieldChangedArgs.changedFields) {
                 if (this._fieldDictionary[fieldReferenceName] &&
                     this._fieldDictionary[fieldReferenceName].type == FieldType.Html) {
-                    htmlFieldChanged = true;
+                    ignoreChange = true;
                     break;
                 }
             }
         }
 
-        if (!htmlFieldChanged) {
+        if (this._settings.discussionsDisabled) {
+            for (let fieldReferenceName in this._workItemFieldChangedArgs.changedFields) {
+                if (this._fieldDictionary[fieldReferenceName] &&
+                    this._fieldDictionary[fieldReferenceName].referenceName == "System.History") {
+                    ignoreChange = true;
+                    break;
+                }
+            }
+        }
+
+        if (!ignoreChange) {
             // Quick check, is this a new work item.  If so, do not autosave
             this._workItemFormService.isNew().then((isNew: boolean) => {
                 if (!isNew) {

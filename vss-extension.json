@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "vsts-extension-wit-autosave",
-    "version": "1.1.0",
+    "version": "1.1.7",
     "name": "Work Item Autosave",
     "scopes": [
         "vso.work",
@@ -44,8 +44,14 @@
             "addressable": true
         },
         {
-            "path": "scripts",
-            "addressable": true
+            "path": "dist",
+            "addressable": true,
+            "packagePath": "scripts"
+        },
+        {
+            "path": "node_modules/vss-web-extension-sdk/lib",
+            "addressable": true,
+            "packagePath": "lib"
         },
         {
             "path": "autosave.html",
