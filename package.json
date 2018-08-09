@@ -1,22 +1,20 @@
 {
   "devDependencies": {
-    "grunt": "^1.0",
-    "grunt-bower-task": "^0.4.0",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-exec": "^1.0",
-    "grunt-ts": "^6.0.0-beta.3",
-    "grunt-typings": "^0.1.5",
-    "tfx-cli": "^0.3.30",
-    "typescript": "^2.0.3",
-    "typings": "^1.4.0",
-    "vss-web-extension-sdk": "^1.106.0"
+    "tfx-cli": "^0.5.14",
+    "typescript": "^3.0.1"
   },
   "name": "vsts-extension-wit-autosave",
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "postinstall": "grunt install"
+    "build": "tsc",
+    "create-dev": "tfx extension create --manifest-globs vss-extension.json --rev-version --overrides-file configs/dev.json",
+    "publish-dev": "tfx extension publish --manifest-globs vss-extension.json --overrides-file configs/dev.json",
+    "create-prod": "tfx extension create --manifest-globs vss-extension.json --rev-version --overrides-file configs/release.json",
+    "publish-prod": "tfx extension publish --manifest-globs vss-extension.json --overrides-file configs/release.json"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.3.5",
+    "vss-web-extension-sdk": "^5.134.0"
   }
 }
