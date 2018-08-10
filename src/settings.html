@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <script src="lib/VSS.SDK.min.js"></script>
+    <script src="../libs/VSS.SDK.min.js"></script>
     <style>
         #content {
             padding: 10px;
@@ -17,11 +17,11 @@
         VSS.init({
             explicitNotifyLoaded: true,
             usePlatformScripts: true,
-            configureModuleLoader: true
+            moduleLoaderConfig: {}
         });
           
         // Load main entry point for extension
-        VSS.require(["scripts/settingsRenderer"], function (renderer) {
+        VSS.require(["src/settingsRenderer"], function (renderer) {
             var renderer = new renderer.SettingsRenderer();
             renderer.initialize().then(function () {
                 // Loading succeeded

@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<script src="lib/VSS.SDK.min.js"></script>
+	<script src="../libs/VSS.SDK.min.js"></script>
 </head>
 
 <body>
@@ -12,11 +12,11 @@
         VSS.init({
             explicitNotifyLoaded: true,
             usePlatformScripts: true,
-            configureModuleLoader: true
+            moduleLoaderConfig: {}
         });
           
         // Load main entry point for extension
-        VSS.require(["scripts/autosave"], function (Autosave) {
+        VSS.require(["src/autosave"], function (Autosave) {
             var autosave = new Autosave.Autosave();
             autosave.initialize().then(function () {
                 autosave.register();
