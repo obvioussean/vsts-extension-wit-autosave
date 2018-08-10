@@ -1,20 +1,36 @@
 {
+  "main": "webpack.config.js",
   "devDependencies": {
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "file-loader": "^1.1.11",
+    "node-sass": "^4.9.3",
+    "rimraf": "^2.6.2",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.22.1",
     "tfx-cli": "^0.5.14",
-    "typescript": "^3.0.1"
+    "ts-loader": "^4.4.2",
+    "typescript": "^2.9.2",
+    "url-loader": "^1.0.1",
+    "webpack-bundle-analyzer": "^2.13.1"
   },
   "name": "vsts-extension-wit-autosave",
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "build": "tsc",
+    "clean": "rimraf dist *.vsix",
+    "start": "webpack-serve --content ./src --port 9085 --https-cert ./certificate.crt --https-key ./privatekey.key",
     "create-dev": "tfx extension create --manifest-globs vss-extension.json --rev-version --overrides-file configs/dev.json",
-    "publish-dev": "tfx extension publish --manifest-globs vss-extension.json --overrides-file configs/dev.json",
-    "create-prod": "tfx extension create --manifest-globs vss-extension.json --rev-version --overrides-file configs/release.json",
-    "publish-prod": "tfx extension publish --manifest-globs vss-extension.json --overrides-file configs/release.json"
+    "publish-dev": "tfx extension publish --manifest-globs vss-extension.json --rev-version --overrides-file configs/dev.json",
+    "build-prod": "npm run clean && mkdir dist && webpack --progress --colors --output-path ./dist -p",
+    "create-prod": "tfx extension create --manifest-globs vss-extension.json --overrides-file configs/release.json --root dist",
+    "publish-prod": "tfx extension publish --manifest-globs vss-extension.json --overrides-file configs/release.json --root dist"
   },
   "dependencies": {
     "@types/jquery": "^3.3.5",
-    "vss-web-extension-sdk": "^5.134.0"
+    "vss-web-extension-sdk": "^5.134.0",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-serve": "^2.0.2"
   }
 }

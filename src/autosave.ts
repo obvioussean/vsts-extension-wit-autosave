@@ -5,6 +5,7 @@ import * as VSS_Utils_Array from "VSS/Utils/Array";
 import * as VSS_Utils_Core from "VSS/Utils/Core";
 import { AutosaveDocument } from "./autosaveDocument";
 import { SettingsManager } from "./settingsManager";
+import "./autosave.scss";
 
 export class Autosave {
     private _settings: AutosaveDocument;
@@ -43,23 +44,17 @@ export class Autosave {
             execute: (context) => {
                 this._autosaveEnabled = !this._autosaveEnabled;
                 // set the text of the button
-                if (this._autosaveEnabled) {
-                    this._menuItem.text = "Disable Autosave";
-                    //this._menuItem.icon = "bowtie-save-close"
-                }
-                else {
-                    this._menuItem.text = "Enable Autosave";
-                    //this._menuItem.icon = "bowtie-save"
-                }
+                this._menuItem.text = `${!this._autosaveEnabled ? "Enable" : "Disable"} Autosave`;
+                this._menuItem.icon = `css://icon-save ${!this._autosaveEnabled && "icon-disabled"}`;
 
                 this._context.updateMenuItems([this._menuItem]);
             },
             getMenuItems: (context) => {
                 this._context = context;
                 this._menuItem = {
-                    id: "Autosave",
-                    text: "Disable Autosave",
-                    //icon: "bowtie-save-close"
+                    id: "autosave",
+                    text: `${!this._autosaveEnabled ? "Enable" : "Disable"} Autosave`,
+                    icon: `css://icon-save ${!this._autosaveEnabled && "icon-disabled"}`,
                 };
 
                 return [this._menuItem];

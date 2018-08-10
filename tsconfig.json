@@ -1,20 +1,25 @@
 {
     "compilerOptions": {
-        "module": "amd",
-        "moduleResolution": "node",
+        "module": "es2015",
         "sourceMap": false,
         "target": "es5",
+        "moduleResolution": "node",
         "lib": [
+            "dom",
             "es2015",
-            "dom"
+            "es2015.promise"
         ],
         "types": [
             "vss-web-extension-sdk"
         ],
-        "rootDir": "src",
-        "outDir": "dist",
+        "plugins": [
+            {
+                "name": "tslint-language-service"
+            }
+        ]
     },
-    "exclude": [
-        "node_modules"
+    "filesGlob": [
+        "src/**/*.ts",
+        "src/**/*.tsx"
     ]
 }

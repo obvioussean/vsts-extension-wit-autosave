@@ -1,3 +1,17 @@
 {
-    "public": true
+    "public": true,
+    "files": [
+        {
+            "path": "../dist/src",
+            "addressable": true
+        },
+        {
+            "path": "../dist/libs",
+            "addressable": true
+        },
+        {
+            "path": "../dist/img",
+            "addressable": true
+        }
+    ]
 }
