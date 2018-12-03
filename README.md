@@ -9,5 +9,5 @@ If you need to temporarily disable autosave, there is now a work item form menu 
 ### Feedback
 For bugs please use the [issue tracker](https://github.com/sferg-msft/vsts-extension-wit-autosave/issues) on the GitHub repo.
 
-For feedback/questions contact me on Twitter: [@sferg_msft](https://twitter.com/sferg_msft).      
+For feedback/questions contact me on Twitter: [@sferg_msft](https://twitter.com/sferg_msft).       
  
